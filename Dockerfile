@@ -5,7 +5,7 @@ MAINTAINER Agus Ramdan <email@agusramdan.web.id>
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
 # Install system dependencies yang diperlukan Odoo 13 & psycopg2
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get clean && apt-get update --fix-missing && apt-get install -y --fix-missing --no-install-recommends \
     build-essential \
     libpq-dev \
     libsasl2-dev \
