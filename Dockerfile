@@ -7,16 +7,7 @@ SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 ENV LANG=C.UTF-8
 
 # Install dependencies dan wkhtmltopdf
-RUN rm -rf /var/lib/apt/lists/* && apt-get update && apt-get install -y --fix-missing --no-install-recommends \
-    ca-certificates curl dirmngr fonts-noto-cjk gnupg libssl-dev \
-    node-less npm python3-num2words python3-pip python3-phonenumbers \
-    python3-pyldap python3-qrcode python3-renderpm python3-setuptools \
-    python3-slugify python3-vobject python3-watchdog python3-xlrd \
-    python3-xlwt xz-utils \
-    && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb \
-    && echo 'cecbf5a6abbd68d324a7cd6c51ec843d71e98951 wkhtmltox.deb' | sha1sum -c - \
-    && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
-    && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
+
 
 # Install PostgreSQL client
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
