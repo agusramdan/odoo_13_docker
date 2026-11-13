@@ -1,7 +1,8 @@
-
-FROM python:3.8.20-slim-bookworm@sha256:1d52838af602b4b5a831beb13a0e4d073280665ea7be7f69ce2382f29c5a613f
+FROM python:3.8.20-slim-buster
 
 MAINTAINER Agus Ramdan <email@agusramdan.web.id>
+
+SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
 # Install system dependencies yang diperlukan Odoo 13 & psycopg2
 RUN apt-get update && apt-get install -y --no-install-recommends \
