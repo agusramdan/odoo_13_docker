@@ -7,7 +7,7 @@ SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 ENV LANG=C.UTF-8
 
 # Install dependencies dan wkhtmltopdf
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends \
     ca-certificates curl dirmngr fonts-noto-cjk gnupg libssl-dev \
     node-less npm python3-num2words python3-pip python3-phonenumbers \
     python3-pyldap python3-qrcode python3-renderpm python3-setuptools \
