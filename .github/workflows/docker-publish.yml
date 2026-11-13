@@ -1,0 +1,31 @@
+name: Publish Docker Image
+
+on:
+  push:
+    branches:
+      - main # Sesuaikan jika branch utama Anda bernama 'master'
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      # --- Step Baru: Membaca versi dari file bernama "VERSION" ---
+      - name: Get version from file
+        run: echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
+        
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/odoo:${{ env.VERSION }}
